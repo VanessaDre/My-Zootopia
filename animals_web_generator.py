@@ -32,16 +32,18 @@ def main():
         if animal_type is None and isinstance(animal.get("characteristics"), dict):
             animal_type = animal["characteristics"].get("type")
 
-        if name:
-            output += f"Name: {name}\n"
-        if diet:
-            output += f"Diet: {diet}\n"
-        if first_location:
-            output += f"Location: {first_location}\n"
-        if animal_type:
-            output += f"Type: {animal_type}\n"
+        output += '<li class="cards__item">\n'
 
-        output += "\n"
+        if name:
+            output += f"Name: {name}<br/>\n"
+        if diet:
+            output += f"Diet: {diet}<br/>\n"
+        if first_location:
+            output += f"Location: {first_location}<br/>\n"
+        if animal_type:
+            output += f"Type: {animal_type}<br/>\n"
+
+        output += "</li>\n"
 
     with open("animals_template.html", "r", encoding="utf-8") as handle:
         template = handle.read()
