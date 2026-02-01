@@ -35,14 +35,18 @@ def main():
         output += '<li class="cards__item">\n'
 
         if name:
-            output += f"Name: {name}<br/>\n"
-        if diet:
-            output += f"Diet: {diet}<br/>\n"
-        if first_location:
-            output += f"Location: {first_location}<br/>\n"
-        if animal_type:
-            output += f"Type: {animal_type}<br/>\n"
+            output += f'<div class="card__title">{name}</div>\n'
 
+        output += '<p class="card__text">\n'
+
+        if diet:
+            output += f'<strong>Diet:</strong> {diet}<br/>\n'
+        if first_location:
+            output += f'<strong>Location:</strong> {first_location}<br/>\n'
+        if animal_type:
+            output += f'<strong>Type:</strong> {animal_type}<br/>\n'
+
+        output += "</p>\n"
         output += "</li>\n"
 
     with open("animals_template.html", "r", encoding="utf-8") as handle:
