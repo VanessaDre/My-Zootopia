@@ -11,6 +11,8 @@ def main():
     """Reads animals_data.json and prints name, diet, first location, and type if available."""
     animals_data = load_data("animals_data.json")
 
+    output = ""
+
     for animal in animals_data:
         if not isinstance(animal, dict):
             continue
@@ -31,16 +33,23 @@ def main():
             animal_type = animal["characteristics"].get("type")
 
         if name:
-            print(f"Name: {name}")
+            output += f"Name: {name}\n"
         if diet:
-            print(f"Diet: {diet}")
+            output += f"Diet: {diet}\n"
         if first_location:
-            print(f"Location: {first_location}")
+            output += f"Location: {first_location}\n"
         if animal_type:
-            print(f"Type: {animal_type}")
+            output += f"Type: {animal_type}\n"
 
-        print()
+        output += "\n"
 
+    with open("animals_template.html", "r", encoding="utf-8") as handle:
+        template = handle.read()
+
+    new_html = template.replace("__REPLACE_ANIMALS_INFO__", output)
+
+    with open("animals.html", "w", encoding="utf-8") as handle:
+        handle.write(new_html)
 
 if __name__ == "__main__":
     main()
